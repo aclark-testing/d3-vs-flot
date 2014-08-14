@@ -83,9 +83,7 @@
       <div class="chart"></div>
 
       <h1><a href="http://www.flotcharts.org/flot/examples/basic-usage/index.html">Flot Basic Usage</a></h1>
-      <div class="demo-container">
-        <div id="placeholder" class="demo-placeholder"></div>
-      </div>
+      <div id="placeholder"></div>
 
     </div><!-- /.container -->
 
@@ -122,9 +120,6 @@
           // A null signifies separate line segments
           var d3 = [[0, 12], [7, 12], null, [7, 2.5], [12, 2.5]];
           $.plot("#placeholder", [ d1, d2, d3 ]);
-
-          // Add the Flot version string to the footer
-          $("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
       });
     </script>
   </body>
