@@ -79,9 +79,13 @@
         <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
       </div>
 
-      <h1><a href="http://bl.ocks.org/mbostock/7322386">Bar Chart #1</a></h1>
-
+      <h1><a href="http://bl.ocks.org/mbostock/7322386">D3 Bar Chart #1</a></h1>
       <div class="chart"></div>
+
+      <h1><a href="http://www.flotcharts.org/flot/examples/basic-usage/index.html">Flot Basic Usage</a></h1>
+      <div class="demo-container">
+        <div id="placeholder" class="demo-placeholder"></div>
+      </div>
 
     </div><!-- /.container -->
 
@@ -105,6 +109,23 @@
         .enter().append("div")
           .style("width", function(d) { return x(d) + "px"; })
           .text(function(d) { return d; });
+    </script>
+    <script src="http://www.flotcharts.org/javascript/jquery.flot.min.js"></script>
+    <script> 
+      $(function() {
+          var d1 = [];
+          for (var i = 0; i < 14; i += 0.5) {
+              d1.push([i, Math.sin(i)]);
+          }
+          var d2 = [[0, 3], [4, 8], [8, 5], [9, 13]];
+
+          // A null signifies separate line segments
+          var d3 = [[0, 12], [7, 12], null, [7, 2.5], [12, 2.5]];
+          $.plot("#placeholder", [ d1, d2, d3 ]);
+
+          // Add the Flot version string to the footer
+          $("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+      });
     </script>
   </body>
 </html>
