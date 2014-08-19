@@ -158,50 +158,5 @@
           $.plot("#placeholder", [ d1, d2, d3 ]);
       });
     </script>
-
-    <script>
-
-        var gist = {"history":[{"version":"a01ded95e259c6a4bb885634b03e705c88e81f0f"}],"files":{"README.md":{"language":"Markdown","type":"text/plain","filename":"README.md","size":312,"sha":"5e72bffb17d12e15fb9da3a8b6794ac19db802a2"},"flare.json":{"language":"JSON","type":"application/json","filename":"flare.json","size":11413,"sha":"a05a94858375bd0ae023f6950a2b13fac5127637"},"index.html":{"language":"HTML","type":"text/html","filename":"index.html","size":1663,"sha":"08b7d8d8bfba56a078dc0c15ef436c6195d4cda1"},"thumbnail.png":{"language":null,"type":"image/png","filename":"thumbnail.png","size":46002,"sha":"5144eafeac9e298962133e9e31de45da21714108"}},"created_at":"2012-11-13T01:25:00.000Z","updated_at":"2014-07-22T14:29:14.000Z","description":"Bubble Chart","owner":{"login":"mbostock"},"id":"4063269"};
-
-        var files = d3.values(gist.files)
-            .sort(function(a, b) { return (b.filename === "index.html") - (a.filename === "index.html") || a.filename.localeCompare(b.filename); });
-
-        var readme = d3.selectAll(".gist-readme")
-            .data(files.filter(function(d) { return /^readme\b/i.test(d.filename) && d.language === "Markdown"; }))
-            .each(function(d) {
-              var readme = d3.select(this);
-              d3.text("/mbostock/raw/4063269/a01ded95e259c6a4bb885634b03e705c88e81f0f/" + d.filename, function(error, content) {
-                readme.html(new Showdown.converter().makeHtml(content));
-                readme.selectAll("code").each(function() { hljs.highlightBlock(this); });
-              });
-            });
-
-        var source = d3.select(".gist-sources").selectAll(".gist-source")
-            .data(files.filter(function(d) { return !/^readme\b/i.test(d.filename) && d.size < 50000 && text(d.type); }))
-          .enter().append("div")
-            .attr("class", "gist-source");
-
-        source.append("h2")
-            .text(function(d) { return d.filename; })
-          .append("a")
-            .attr("name", function(d) { return d.filename; })
-            .attr("href", function(d) { return "#" + d.filename; })
-            .text("#");
-
-        source.append("pre").append("code")
-            .attr("class", function(d) { return d.language && (d.language === "JSON" ? "javascript" : d.language.toLowerCase()); })
-            .each(function(d) {
-              var code = d3.select(this);
-              d3.text("/mbostock/raw/4063269/a01ded95e259c6a4bb885634b03e705c88e81f0f/" + (d.filename === "index.html" ? "" : d.filename), function(error, content) {
-                code.text(content);
-                hljs.highlightBlock(code.node());
-              });
-            });
-
-        function text(type) {
-          return /(^text\/)|(^application\/(javascript|json)$)|(^image\/svg$)|(\+xml$)/.test(type);
-        }
-
-    </script>
   </body>
 </html>
